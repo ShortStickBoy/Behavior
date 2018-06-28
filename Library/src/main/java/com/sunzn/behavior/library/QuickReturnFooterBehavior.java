@@ -14,7 +14,7 @@ import android.view.animation.Interpolator;
 
 /**
  * CoordinatorLayout Behavior for a quick return footer
- *
+ * <p>
  * When a nested ScrollView is scrolled down, the quick return view will disappear.
  * When the ScrollView is scrolled back up, the quick return view will reappear.
  *
@@ -33,33 +33,10 @@ public class QuickReturnFooterBehavior extends CoordinatorLayout.Behavior<View> 
         super(context, attrs);
     }
 
-
-//    @Override
-//    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, View child, View directTargetChild, View target, int nestedScrollAxes) {
-//        return (nestedScrollAxes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0;
-//    }
-
     @Override
     public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
         return (axes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0;
     }
-
-//    @Override
-//    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dx, int dy, int[] consumed) {
-//        if (dy > 0 && mDySinceDirectionChange < 0 || dy < 0 && mDySinceDirectionChange > 0) {
-//            // We detected a direction change- cancel existing animations and reset our cumulative delta Y
-//            child.animate().cancel();
-//            mDySinceDirectionChange = 0;
-//        }
-//
-//        mDySinceDirectionChange += dy;
-//
-//        if (mDySinceDirectionChange > child.getHeight() && child.getVisibility() == View.VISIBLE && !mIsHiding) {
-//            hide(child);
-//        } else if (mDySinceDirectionChange < 0 && child.getVisibility() == View.INVISIBLE && !mIsShowing) {
-//            show(child);
-//        }
-//    }
 
     @Override
     public void onNestedPreScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View child, @NonNull View target, int dx, int dy, @NonNull int[] consumed, int type) {
@@ -80,7 +57,7 @@ public class QuickReturnFooterBehavior extends CoordinatorLayout.Behavior<View> 
 
     /**
      * Hide the quick return view.
-     *
+     * <p>
      * Animates hiding the view, with the view sliding down and out of the screen.
      * After the view has disappeared, its visibility will change to GONE.
      *
@@ -92,7 +69,8 @@ public class QuickReturnFooterBehavior extends CoordinatorLayout.Behavior<View> 
 
         animator.setListener(new Animator.AnimatorListener() {
             @Override
-            public void onAnimationStart(Animator animator) {}
+            public void onAnimationStart(Animator animator) {
+            }
 
             @Override
             public void onAnimationEnd(Animator animator) {
@@ -111,7 +89,8 @@ public class QuickReturnFooterBehavior extends CoordinatorLayout.Behavior<View> 
             }
 
             @Override
-            public void onAnimationRepeat(Animator animator) {}
+            public void onAnimationRepeat(Animator animator) {
+            }
         });
 
         animator.start();
@@ -119,7 +98,7 @@ public class QuickReturnFooterBehavior extends CoordinatorLayout.Behavior<View> 
 
     /**
      * Show the quick return view.
-     *
+     * <p>
      * Animates showing the view, with the view sliding up from the bottom of the screen.
      * After the view has reappeared, its visibility will change to VISIBLE.
      *
@@ -150,7 +129,8 @@ public class QuickReturnFooterBehavior extends CoordinatorLayout.Behavior<View> 
             }
 
             @Override
-            public void onAnimationRepeat(Animator animator) {}
+            public void onAnimationRepeat(Animator animator) {
+            }
         });
 
         animator.start();
